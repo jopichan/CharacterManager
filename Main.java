@@ -1,36 +1,46 @@
 import com.unpri.charactermanager.model.Character;
+import com.unpri.charactermanager.model.CharacterManager;
 import com.unpri.charactermanager.model.CharacterType;
 
 public class Main {
-    public static void main(String[] args) {              // method main: titik awal eksekusi program
 
-        System.out.println("=== Character Manager v0.1 ===");
+    public static void main(String[] args) {
 
-        // Membuat 3 object Character menggunakan constructor pertama
-        Character hero = new Character("GeraldGolf", CharacterType.WARRIOR, 5);
-        Character wizard = new Character("Merlin", CharacterType.MAGE, 3);
-        Character scout = new Character("Athena", CharacterType.ARCHER, 4);
+        CharacterManager manager = new CharacterManager();
 
-        // Menampilkan ketiganya menggunakan toString()
-        System.out.println(hero);
-        System.out.println(wizard);
-        System.out.println(scout);
+        Character c1 = new Character(
+                "Arthur",
+                CharacterType.WARRIOR,
+                5);
 
-        System.out.println();
-        System.out.println(">> " + hero.getName() + " level up!");
-        hero.setLevel(hero.getLevel() + 1);     // naik 1 level, HP & Attack dihitung ulang otomatis
-        System.out.println("After level up: " + hero);
+        Character c2 = new Character(
+                "Merlin",
+                CharacterType.MAGE,
+                8);
 
-        System.out.println();
-        System.out.println(">> Nama karakter: " + hero.getName());
-        System.out.println(">> Jenis karakter: " + hero.getType());
-        System.out.println(">> HP saat ini: " + hero.getHitPoints());
-    
-    // BAGIAN B: karakter baru dengan mana
-        System.out.println();
-        Character healer = new Character("Selene", CharacterType.HEALER, 2);
-        healer.setMana(80);
-        System.out.println(healer);
-        System.out.println(">> isAlive(): " + healer.isAlive());
+        Character c3 = new Character(
+                "Robin",
+                CharacterType.ARCHER,
+                4);
+
+        manager.addCharacter(c1);
+        manager.addCharacter(c2);
+        manager.addCharacter(c3);
+
+        System.out.println("=== DAFTAR CHARACTER ===");
+
+        for (Character c : manager.getAllCharacters()) {
+            System.out.println(c);
+        }
+
+        System.out.println("\n=== DEMO LEVEL UP ===");
+
+        System.out.println("Sebelum Level Up:");
+        System.out.println(c1);
+
+        c1.levelUp();
+
+        System.out.println("Sesudah Level Up:");
+        System.out.println(c1);
     }
 }
